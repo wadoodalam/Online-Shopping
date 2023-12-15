@@ -1,7 +1,22 @@
-# the details(and quantity as well) of the selected items got from grandchild(create a method in that class called add_to_cart)
-# Method: calculate the total price 
-# display total price along with item details(and quantity)
-# ask if need to shop more? If yes then go to main_menu.py else:
-    # ask if login or need to signup(navigate to relevent UserInfo classes)
-        # After login, ask for delivery address
-            # ask to confirm, update_count(itemName,quantityBought) for that specific item in inventory.py ,print confirmation
+import keyboard
+from product import Product
+class Cart:
+    def __init__(self, item, quantityBought):
+        
+        self.itemName = item.name
+        self.quantityBought = quantityBought
+        self.price = item.price
+
+    def TotalCost(self):
+        total_price = self.quantityBought * self.price
+        return total_price
+    
+    # Call the UserManager class's method using obj
+
+    def AddressAndConfirmation(self, street,city,country) :
+        print(f"Here is your address {street} {city} {country}. Press Enter to Confirm")
+        keyboard.wait('Enter')
+        print("Order Confirmed")
+        Product.UpdateCount(self.itemName,self.quantityBought)
+        # go to main menu
+    
